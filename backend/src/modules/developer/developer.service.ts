@@ -15,6 +15,10 @@ export const getAllDevelopers = async (): Promise<DeveloperResponseDTO[]> => {
 };
 
 export const syncDeveloperCommits = async (): Promise<Commit[]> => {
+  if (!GITHUB_CONFIG.OWNER || !GITHUB_CONFIG.REPO) {
+    throw new Error('GITHUB_OWNER and GITHUB_REPO must be defined in your .env file');
+  }
+
   const commitList = await fetchRepositoryCommits(
     GITHUB_CONFIG.OWNER,
     GITHUB_CONFIG.REPO

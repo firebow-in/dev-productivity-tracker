@@ -7,8 +7,8 @@ const ProfileScreen = () => {
     <View style={styles.container}>
       
       <View style={styles.card}>
-        <Text style={styles.name}>Tejas</Text>
-        <Text style={styles.email}>tejasp-binaried</Text>
+        <Text style={styles.name}>Developer Profile</Text>
+        <Text style={styles.email}>contributor@github.com</Text>
       </View>
 
       <View style={styles.card}>

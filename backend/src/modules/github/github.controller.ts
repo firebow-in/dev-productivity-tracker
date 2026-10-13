@@ -8,11 +8,12 @@ export const getRecentActivities = async (
   try {
     const recentCommits = await getRecentCommits(30);
     res.status(200).json(recentCommits);
-  } catch (error: any) {
-    console.error(`Error in getRecentActivities: ${error.message}`);
+  } catch (error: unknown) {
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+    console.error(`Error in getRecentActivities: ${errorMessage}`);
     res.status(500).json({
       message: 'Failed to fetch recent activity',
-      error: error.message,
+      error: errorMessage,
     });
   }
 };

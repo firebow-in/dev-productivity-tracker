@@ -42,11 +42,12 @@ export const fetchRepositoryCommits = async (
     await insertCommitList(commitList);
 
     return commitList;
-  } catch (error: any) {
+  } catch (error: unknown) {
     if (axios.isAxiosError(error)) {
       console.error(`GitHub API Error (${error.response?.status}): ${JSON.stringify(error.response?.data)}`);
     } else {
-      console.error(`Error fetching commits: ${error.message}`);
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      console.error(`Error fetching commits: ${errorMessage}`);
     }
     throw error;
   }

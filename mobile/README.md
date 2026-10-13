@@ -1,50 +1,75 @@
-# Welcome to your Expo app 👋
+# 📱 Developer Productivity Tracker — Mobile Application
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+The official cross-platform mobile client for **Developer Productivity Tracker**, built with **React Native**, **Expo SDK 54**, and **TypeScript**.
 
-## Get started
+---
 
-1. Install dependencies
+## ✨ Features
 
-   ```bash
-   npm install
-   ```
+- **Dashboard**: Real-time velocity metrics, interactive bezier commit trend charts, top contributor highlight, and productivity leaderboard.
+- **Activity Feed**: Live commit activity timeline with dynamic filtering (7 days, 30 days, all time) and human-readable time-ago labels.
+- **Developer Directory**: Searchable contributor directory with individual commit records.
+- **Profile Screen**: User stats overview and manual sync triggers.
+- **Theme Support**: Seamless Dark Mode & Light Mode integration via React Navigation.
 
-2. Start the app
+---
 
-   ```bash
-   npx expo start
-   ```
+## 🏗️ Architecture
 
-In the output, you'll find options to open the app in a
+Following strict modular feature rules:
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
+```
+src/
+├── modules/
+│   ├── activity/        # Activity feed screen, hooks, services & styles
+│   ├── dashboard/       # Charts, metrics cards & leaderboard
+│   ├── developers/      # Searchable contributors list & hooks
+│   └── profile/         # User profile & sync controls
+├── navigation/          # Bottom tab navigator & stack navigators
+├── services/            # Axios API client configured for backend communication
+└── shared/              # Reusable context (MetricsContext), hooks, and date utils
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+---
 
-## Learn more
+## 🚀 Getting Started
 
-To learn more about developing your project with Expo, look at the following resources:
+### 1. Install Dependencies
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+```bash
+npm install
+```
 
-## Join the community
+### 2. Configure Backend API Endpoint
 
-Join our community of developers creating universal apps.
+Open `src/services/apiClient.ts` and ensure `baseURL` points to your running backend server:
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+```typescript
+import axios from 'axios';
+
+// Replace with your local machine's IP address (e.g. 192.168.x.x) for physical devices / Expo Go,
+// or http://10.0.2.2:3000 for Android Emulator, or http://localhost:3000 for iOS Simulator / Web.
+export const apiClient = axios.create({
+  baseURL: 'http://<YOUR_LOCAL_IP>:3000',
+});
+```
+
+### 3. Start Expo Development Server
+
+```bash
+npx expo start
+```
+
+Press:
+- `a` to open on **Android Emulator**
+- `i` to open on **iOS Simulator**
+- `w` to open in **Web Browser**
+- Scan QR code with the **Expo Go** app on your physical phone!
+
+---
+
+## 🧪 Linting & Quality Checks
+
+```bash
+npm run lint
+```

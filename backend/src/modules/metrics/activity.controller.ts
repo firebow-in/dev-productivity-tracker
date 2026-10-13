@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { getRecentCommits } from './activity.service';
 
-export const fetchRecentCommits = async (req: Request, res: Response) => {
+export const fetchRecentCommits = async (req: Request, res: Response): Promise<void> => {
   try {
     const days = req.query.days ? Number(req.query.days) : undefined;
     const data = await getRecentCommits(days);

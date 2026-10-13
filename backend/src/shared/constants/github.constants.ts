@@ -1,4 +1,8 @@
+import dotenv from 'dotenv';
+dotenv.config();
+
 export const GITHUB_CONFIG = {
-  OWNER: 'tejasp-binaried',
-  REPO: 'dev-tracker',
+  OWNER: process.env.GITHUB_OWNER || '',
+  REPO: process.env.GITHUB_REPO || '',
 } as const;
+
